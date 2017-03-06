@@ -1,5 +1,8 @@
 #base iso
-FROM test
+#FROM test
 
 #iso autor
-MAINTAINER test
+#MAINTAINER test
+
+FROM       centos:centos7.1.1503
+MAINTAINER Carson,C.J.Zeong <zcy@nicescale.com>
