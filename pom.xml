@@ -48,12 +48,12 @@
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
 		<!--database-->
-		<!--<dependency>
+<!--		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>-->
 		<!--mysql-->
-		<!--<dependency>
+<!--		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 		</dependency>-->
@@ -89,15 +89,31 @@
 				</configuration>
 			</plugin>
 
+			<!--<plugin>
+				<groupId>com.spotify</groupId>
+				<artifactId>docker-maven-plugin</artifactId>
+				<version>0.4.3</version>
+				<configuration>
+					&lt;!&ndash;注意imageName一定要是符合正则[a-z0-9-_.]的，否则构建不会成功&ndash;&gt;
+					<imageName>${docker.image.prefix}/${project.artifactId}</imageName>
+					<baseImage>java</baseImage>&lt;!&ndash;add&ndash;&gt;
+					<entryPoint>["java", "-jar", "/${project.build.finalName}.jar"]</entryPoint>&lt;!&ndash;add&ndash;&gt;
+					<dockerDirectory>src/main/docker</dockerDirectory>
+					<resources>
+						<resource>
+							<targetPath>/</targetPath>
+							<directory>${project.build.directory}</directory>
+							<include>${project.build.finalName}.jar</include>
+						</resource>
+					</resources>
+				</configuration>
+			</plugin>-->
 			<plugin>
 				<groupId>com.spotify</groupId>
 				<artifactId>docker-maven-plugin</artifactId>
 				<version>0.4.3</version>
 				<configuration>
-					<!--注意imageName一定要是符合正则[a-z0-9-_.]的，否则构建不会成功-->
 					<imageName>${docker.image.prefix}/${project.artifactId}</imageName>
-					<baseImage>java</baseImage><!--add-->
-					<entryPoint>["java", "-jar", "/${project.build.finalName}.jar"]</entryPoint><!--add-->
 					<dockerDirectory>src/main/docker</dockerDirectory>
 					<resources>
 						<resource>
