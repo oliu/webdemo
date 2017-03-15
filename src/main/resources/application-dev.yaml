@@ -1,2 +1,6 @@
 server:
   port: 8080
+projectName: webDemo
+girl:
+      name: haha
+      age: 18
