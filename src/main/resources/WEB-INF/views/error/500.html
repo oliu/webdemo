@@ -1,0 +1,21 @@
+<%layout("/views/common/layout.html"){%>
+<link href="${base}/css/metro/error.css" rel="stylesheet">
+<div class="container-fluid">
+	<div class="row-fluid">
+		<div class="span12 page-500">
+			<div class=" number">500</div>
+			<div class=" details">
+				<h3>Sorry 服务器出错了.</h3>
+				<p>
+					请联系后台技术人员,我们会尽快恢复.<br /> 请稍等一会.<br /> <br />
+				</p>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+$(function() {
+	App.init();
+});
+</script>
+<%}%>

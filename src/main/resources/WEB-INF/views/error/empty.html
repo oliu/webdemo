@@ -1,0 +1,23 @@
+<%layout("/views/common/layout.html"){%>
+<link href="${base}/css/metro/error.css" rel="stylesheet">
+<div class="container-fluid">
+	<div class="row-fluid">
+		<div class="span12 page-500">
+			<div class=" number"></div>
+			<div class=" details">
+				<h3>Sorry 查询出错,该条件没有查询结果.</h3>
+				<p>
+					请根据页面显示出来的数据进行操作.<br />
+					<a href="${base}">返回首页</a>,
+					<a href="javascript:history.back(-1)">返回上一页</a>
+				</p>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+$(function() {
+	App.init();
+});
+</script>
+<%}%>

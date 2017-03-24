@@ -1,0 +1,21 @@
+<%layout("/views/common/layout.html"){%>
+<link href="${base}/css/metro/error.css" rel="stylesheet">
+<div class="container-fluid">
+	<div class="row-fluid">
+		<div class="span12 page-500">
+			<div class=" number">No</div>
+			<div class=" details">
+				<h3>对不起,当前用户没有此权限</h3>
+				<p>
+					请联系上层主管修改权限.<br /> <br />
+				</p>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+$(function() {
+	App.init();
+});
+</script>
+<%}%>

@@ -1,0 +1,36 @@
+
+/***
+Dashboard date range panel
+***/
+.page-content .dashboard-date-range  {
+  display: none;
+  padding-top: -1px;
+  margin-right:-10px;
+  margin-top: -8px;
+  padding: 8px;
+  padding-bottom: 7px;
+  cursor: pointer;
+  color: #fff;
+  background-color: #4b8df8;
+}
+
+.page-content .dashboard-date-range span {
+  font-size: 12px;
+  font-weight: 300; 
+  color: #fff;
+  text-transform: uppercase;
+} 
+
+.page-content .dashboard-date-range .icon-calendar { 
+  text-transform: normal;
+  color: #fff;
+  margin-top: 0px;
+  font-size: 14px;
+}
+.page-content .dashboard-date-range span {
+  font-weight: normal; 
+} 
+.page-content .dashboard-date-range .icon-angle-down { 
+  color:#fff;
+  font-size: 16px;
+}

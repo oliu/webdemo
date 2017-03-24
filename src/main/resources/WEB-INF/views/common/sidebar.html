@@ -1,0 +1,188 @@
+<div class="page-sidebar nav-collapse collapse">
+	<ul class="page-sidebar-menu">
+		<li>
+			<div class="sidebar-toggler hidden-phone"></div> <!--放大缩小-->
+		</li>
+		<li>
+			<!-- BEGIN RESPONSIVE QUICK SEARCH FORM -->
+			<form class="sidebar-search" action="${base}/search/findAll" method="get">
+				<div class="input-box">
+					<a href="javascript:;" class="remove"></a>
+					<input type="text" placeholder="Search..." name="searchText"/>
+					<input type="submit" class="submit" value=" "/>
+				</div>
+			</form>
+			<!-- END RESPONSIVE QUICK SEARCH FORM -->
+		</li>
+		<li class="">
+			<a href="${base}/">
+				<i class="icon-home"></i>
+				<span class="title">猜么后台</span>
+			</a>
+		</li>
+		<%if(session.userGroup.gname != '临时组'){%>
+		<li class="">
+			<a href="${base}/map/">
+				<i class="icon-time"></i>
+				<span class="title">用户实时分布</span>
+			</a>
+		</li>
+		<li class="">
+			<a href="${base}/map/new">
+				<i class="icon-time"></i>
+				<span class="title">新用户实时分布</span>
+			</a>
+		</li>
+		<%}%>
+		<li class="">
+			<a href="javascript:;">
+				<i class="icon-user"></i>
+				<span class="title">用户中心</span>
+				<span class="arrow"></span>
+			</a>
+			<ul class="sub-menu">
+				<%if(session.userGroup.gname != '临时组'){%><li><a href="${base}/members/findAllMember">用户列表</a></li><%}%>
+				<%if(session.userGroup.gname != '临时组'){%><li><a href="${base}/members/findAllMemberTags">标签管理</a></li><%}%>
+				<%if(session.userGroup.gname != '临时组'){%><li><a href="${base}/members/findMemberIcon">头像审核</a></li><%}%>
+				<li><a href="${base}/members/findAllMemberGuess">猜题管理</a></li>
+				<%if(session.userGroup.gname != '临时组'){%><li><a href="${base}/members/findAllComment">评论管理</a></li><%}%>
+			</ul>
+		</li>
+		<%if(session.userGroup.gname != '临时组'){%>
+		<li class="">
+			<a href="javascript:;">
+				<i class="icon-bookmark-empty"></i>
+				<span class="title">标签中心</span>
+				<span class="arrow"></span>
+			</a>
+			<ul class="sub-menu">
+				<li><a href="${base}/tags/findAllTags">标签列表</a></li>
+				<li><a href="${base}/tags/findAllTagsCategory">分类管理</a></li>
+			</ul>
+		</li>
+		<li class="">
+			<a href="javascript:;">
+				<i class="icon-pencil"></i>
+				<span class="title">官方操作中心</span>
+				<span class="arrow"></span>
+			</a>
+			<ul class="sub-menu">
+				<li class="">
+					<a href="javascript:;">
+						<span class="title">官方/推荐/热门操作</span>
+						<span class="arrow"></span>
+					</a>
+					<ul class="sub-menu">
+						<li><a href="${base}/official/addupdateGuessUI?questionid=0">添加官方猜</a></li>
+						<li><a href="${base}/official/findAllOfficialGuesses">猜题列表</a></li>
+						<li><a href="${base}/official/findAllGuessRecommend">精选列表</a></li>
+						<li><a href="${base}/official/findAllEditorsRecommend">小编推荐</a></li>
+						<li><a href="${base}/official/findHotGuessRecommend">热门列表</a></li>
+					</ul>
+				</li>
+				<li class="">
+					<a href="javascript:;">
+						<span class="title">频道操作</span>
+						<span class="arrow"></span>
+					</a>
+					<ul class="sub-menu">
+						<li><a href="${base}/channel/addUpdateChannelUI">添加/修改频道</a></li>
+						<li><a href="${base}/channel/channelList">频道列表</a></li>
+						<li><a href="${base}/channel/channelGuessList">频道猜列表</a></li>
+						<li><a href="${base}/channel/channelRecommendList">频道-小编推荐</a></li>
+					</ul>
+				</li>
+				<!-- <li><a href="${base}/official/findAllOfficialChat">后台聊天</a></li> -->
+				<li><a href="${base}/official/findAllOfficialMembers">用户列表</a></li>
+				<li><a href="${base}/official/findAllRecommendMembers">特权用户列表</a></li>
+				<li><a href="${base}/official/findAllOfficialComment">评论列表</a></li>
+				<li><a href="${base}/official/findAllFilter">过滤字符列表</a></li>
+			</ul>
+		</li>
+		<li class="">
+			<a href="javascript:;">
+				<i class="icon-pencil"></i>
+				<span class="title">游戏管理中心</span>
+				<span class="arrow"></span>
+			</a>
+			<ul class="sub-menu">
+				<li><a href="${base}/game/findAllGames">第三方游戏列表</a></li>
+			</ul>
+		</li>
+		<li class="">
+			<a href="javascript:;">
+				<i class="icon-user-md"></i>
+				<span class="title">客服管理</span>
+				<span class="arrow"></span>
+			</a>
+			<ul class="sub-menu">
+				<li><a href="${base}/cservice/secretary">小秘书</a></li>
+				<li><a href="${base}/cservice/oldSecretary">旧版小秘书</a></li>
+				<li><a href="${base}/cservice/findSysReport">产品反馈信息</a></li>
+				<li><a href="${base}/cservice/findMemberReport">举报管理</a></li>
+			</ul>
+		</li>
+		<li class="">
+			<a href="javascript:;">
+				<i class="icon-envelope"></i>
+				<span class="title">消息推送</span>
+				<span class="arrow"></span>
+			</a>
+			<ul class="sub-menu">
+				<li><a href="${base}/push/addMessageUI">新建消息</a></li>
+				<li><a href="${base}/push/findAllMessage">历史记录</a></li>
+			</ul>
+		</li>
+		<li class="">
+			<a href="javascript:;">
+				<i class="icon-edit"></i>
+				<span class="title">参数配置</span>
+				<span class="arrow"></span>
+			</a>
+			<ul class="sub-menu">
+			<li><a href="${base}/scroll/findAllScroll">App滚动条设置</a></li>
+			<li><a href="${base}/config/findAllConfig">App参数设置</a></li>
+			<li><a href="${base}/config/findAllSysConfig">后台参数设置</a></li>
+			</ul>
+		</li>
+		<li class="">
+			<a href="javascript:;">
+				<i class="icon-cog"></i>
+				<span class="title">系统功能</span>
+				<span class="arrow"></span>
+			</a>
+			<ul class="sub-menu">
+				<li><a href="${base}/system/param">系统参数</a></li>
+				<li><a href="${base}/system/userGroup">管理员分组</a></li>
+				<li><a href="${base}/system/1234">管理员角色</a></li>
+				<li><a href="${base}/system/users">系统管理员</a></li>
+			</ul>
+		</li>
+		<li class="">
+			<a href="javascript:;">
+				<i class="icon-cog"></i>
+				<span class="title">系统日志</span>
+				<span class="arrow"></span>
+			</a>
+			<ul class="sub-menu">
+				<li><a href="${base}/log/logger">管理员日志</a></li>
+				<li><a href="${base}/log/apiLogger">APP报错日志</a></li>
+				<li><a href="${base}/log/CserviceLog">运营日志</a></li>
+			</ul>
+		</li>
+		<li class="">
+			<a href="javascript:;">
+				<i class="icon-time"></i>
+				<span class="title">任务管理</span>
+				<span class="arrow"></span>
+			</a>
+			<ul class="sub-menu">
+				<li><a href="${base}/prepare/findAllPrepare">预推荐猜题</a></li>
+				<li><a href="${base}/prepare/findAllImagePrepare">预启动图片</a>
+				<li><a href="${base}/quartz/quartzList">定时任务</a></li>
+				<li><a href="${base}/quartz/dataImport">数据导入</a></li>
+			</ul>
+		</li>
+		<%}%>
+	</ul>
+</div>

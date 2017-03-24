@@ -1,0 +1,31 @@
+@charset "utf-8";
+/* CSS Document */
+*{ margin:0; padding:0;}img{ border:none;}
+body{ font-size:12px; font-family:"微软雅黑","宋体"; background:#3e9dd3;}ul{ list-style:none;} a{ color:#2e2222; text-decoration:none;}
+h1 .historySession{ color:#FFF; float:right; background-color:#6b6b72; width:28%; height:40px;border-radius:5px; text-align:center; line-height:40px; margin-right:2%; margin-top:5px;}
+.fl{ float:left;}.fr{ float:right;}
+.m_mess{ width:100%; margin:0 auto;}
+.l_mess{ width:21.701389%; background:#2e2e30; border-radius:5px !important; height:639px; margin-left:1.8680556%;}
+.l_mess h1{margin:0; color:#fdfdfd;font-size:14px; font-weight:normal; text-align:center; font-family:"微软雅黑"; line-height:52px;}
+.mess_first .user_list{height:580px;} .user__list{height:580px;}
+.user_list{margin:0; overflow-y:auto; overflow-x:hidden; height:537px; background:#ffffff;}
+.user_list li{ background-color:#f6f6f6; height:40px; padding:5px 0 5px 55px; border-bottom:1px solid #e4e7b8;font-size:14px;}
+.user_list li span{ width:10px; height:10px; border-radius:10px !important; background:#F30; display:inline-block;}
+.user_list li:hover{ background-color:#f7feb0;}
+.user__list{margin:0; overflow-y:auto; overflow-x:hidden; height:537px; background:#ffffff;}
+.user__list li{ background-color:#f6f6f6; height:40px; padding:5px 0 5px 55px; border-bottom:1px solid #e4e7b8;font-size:14px;}
+.user__list li span{ width:10px; height:10px; border-radius:10px !important; background:#F30; display:inline-block;}
+.user__list li:hover{ background-color:#f7feb0;}
+.l_txt{width:70.921986%; height:30px; color:#898989; border-radius:5px !important;}
+.l_btn{background-color:#5792ba; width:25.730496%; border:#033c69 solid 1px;color:#FFF;font-size:14px; border-radius:5px !important; font-weight:bold;}
+.l_foot{ height:40px; padding:5px;}
+.r_mess{ width:52.256944%; border-radius:5px !important; }
+.r_mess h2{margin:0; border-top-left-radius:5px !important;border-top-right-radius:5px !important; color:#fdfdfd;font-size:14px; font-weight:normal; text-align:center; font-family:"微软雅黑";line-height:52px; background:url(../images/sanjiao.png) no-repeat 56.312292% 20px; background-color:#2e2e30;}
+.r_mess h2 button{ border:#000 1px solid; border-radius:3px !important; width:8.305648%; height:35px; float:right; text-align:center; background:#535353; line-height:35px; margin:5px 5px 0 0;}
+.r_usermsg{margin:0; overflow-y:auto; overflow-x:hidden; color:#fdfdfd; height:518px;filter:progid:DXImageTransform.Microsoft.gradient(enabled=’true’,startColorstr=’#7F000000′, endColorstr=’#7F000000′);background:rgba(43,102,120,0.2);}
+.r_usermsg li.lileft{font-size:14px; padding:5px 0 5px 60px;}
+.r_usermsg li.liright{font-size:14px; padding:5px 60px 5px 0 ; text-align:right;}
+.r_usermsg li p{ background:#a6d555; padding:12px 14px; margin-top:12px; display:inline-block; border-radius:5px !important;}
+.r_foot{height:60px; padding:5px; background:#2e2e30;border-bottom-left-radius:5px !important;border-bottom-right-radius:5px !important;}
+.r_txt{resize:none; width:82.724252%; height:48px; color:#898989; margin-top:3px; border-radius:5px !important;}
+.r_btn{background-color:#5792ba; width:12.305648%; height:40px; border:#033c69 solid 1px; color:#FFF;font-size:14px; border-radius:5px !important; font-weight:bold;}

@@ -1,0 +1,265 @@
+<%layout("/views/common/layout.html"){%>
+<link href="${base}/css/metro/jquery.fancybox.css" rel="stylesheet" />
+<link href="${base}/css/metro/news.css" rel="stylesheet" type="text/css" />
+<link href="${base}/css/metro/daterangepicker.css" rel="stylesheet" type="text/css" />
+<link href="${base}/css/indexDaterange.css" rel="stylesheet" type="text/css" />
+<script src="${base}/js/metro/daterangepicker.js" type="text/javascript"></script>
+<script src="${base}/js/metro/date.js" type="text/javascript"></script>
+<script src="${base}/js/indexDaterange.js" type="text/javascript"></script>	
+<script src="${base}/js/echarts-2.1.10/build/dist/echarts.js"></script>
+<div class="row-fluid">
+	<%if(session.userGroup.gname != '临时组'){%>
+	<div class="span12 news-page">
+		<h1>数据搜索</h1>
+		<div class="row-fluid">
+			<div class="span10">
+				<div class="portlet box blue">
+					<div class="portlet-title">
+						<div class="caption">
+							<i class="icon-edit"></i>按照日期搜索
+						</div>
+						<div class="pull-right no-text-shadow">
+							<div id="dashboard-report-range"
+								class="dashboard-date-range tooltips no-tooltip-on-touch-device responsive"
+								data-tablet="" data-desktop="tooltips" data-placement="top"
+								data-original-title="点此可以改变日期期间">
+								<i class="icon-calendar"></i> <span></span> <i
+									class="icon-angle-down"></i>
+							</div>
+						</div>
+					</div>
+					<div class="portlet-body" id="resultSysBaseData">
+						<span></span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="row-fluid">
+	<div class="span10">
+		<div class="portlet box yellow">
+			<div class="portlet-title">
+				<div class="caption">
+					<i class="icon-reorder"></i>今日数据
+				</div>
+				<div class="tools">
+					<a href="javascript:;" class="collapse"></a><a href="javascript:;"
+						class="remove"></a>
+				</div>
+			</div>
+			<div class="portlet-body">
+				<div id="todayMain" style="height:400px"></div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="row-fluid">
+	<div class="span12 news-page">
+		<h1>数据统计</h1>
+		<div class="row-fluid">
+			<div class="span3">
+				<div class="top-news">
+					<a href="#" class="btn green"> <span>昨日数据统计</span> <em> <i
+							class="icon-tags"></i>
+					</em> <i class="icon- icon-bullhorn top-news-icon"></i>
+					</a>
+				</div>
+				<div class="news-blocks">
+					<h3>猜题统计</h3>
+					<p>
+						<i class="icon-rss">用户题数 ：</i>${yesterdaySysBaseData.memberGuessSum}
+					</p>
+					<p>
+						<i class="icon-rss">官方题数：</i>${yesterdaySysBaseData.officialGuessSum}
+					</p>
+					<p>
+						<i class="icon-rss">天总题数：</i>${yesterdaySysBaseData.totalGuessSum}
+					</p>
+					<p>
+						<i class="icon-comments-alt">评论数：</i>${yesterdaySysBaseData.commentSum}
+					</p>
+					<p>
+						<i class="icon-edit">普通答题数：</i>${yesterdaySysBaseData.guessOptionSum}
+					</p>
+					<p>
+						<i class="icon-key">验证答题数：</i>${yesterdaySysBaseData.validGuessOptionSum}
+					</p>
+				</div>
+				<div class="news-blocks">
+					<h3>用户统计</h3>
+					<p>
+						<i class="icon-male">新增用户数：</i>${yesterdaySysBaseData.newMemberSum}
+					</p>
+					<p>
+						<i class="icon-group">活跃用户数：</i>${yesterdaySysBaseData.loginMemberSum}
+					</p>
+				</div>
+			</div>
+			<div class="span3">
+				<div class="top-news">
+					<a href="#" class="btn purple"> <span>截止到当前的总数据统计</span> <em> <i
+							class="icon-tags"></i>
+					</em> <i class="icon- icon-bar-chart top-news-icon"></i>
+					</a>
+				</div>
+				<div class="news-blocks">
+					<h3>猜题总统计</h3>
+					<p>
+						<i class="icon-rss">用户猜：</i>${allData.customGuess}
+					</p>
+					<p>
+						<i class="icon-rss">官方猜：</i>${allData.officialGuess}
+					</p>
+					<p>
+						<i class="icon-rss">总题数：</i>${allData.allGuess}
+					</p>
+					<p>
+						<i class="icon-comments-alt">评论总数：</i>${allData.guessComment}
+					</p>
+					<p>
+						<i class="icon-edit">普通答题：</i>${allData.optionView}
+					</p>
+					<p>
+						<i class="icon-key">验证答题：</i>${allData.validOptionView}
+					</p>
+				</div>
+				<div class="news-blocks">
+					<h3>用户总统计</h3>
+					<p>
+						<i class="icon-group">累计用户数：</i>${allData.members}
+					</p>
+				</div>
+			</div>
+			<div class="span3">
+				<div class="top-news">
+					<a href="#" class="btn red"> <span>APP其他各项数据</span> <em> <i
+							class="icon-tags"></i>
+					</em> <i class="icon- icon-bar-chart top-news-icon"></i>
+					</a>
+				</div>
+				<div class="news-blocks">
+					<h3>男女比例</h3>
+					<p>
+						<i class="icon-male">男性所占比例:</i>${maleNumP, numberFormat="##.#%"}(${maleNum})
+					</p>
+					<p>
+						<i class="icon-female">女性所占比例:</i>${femaleNumP, numberFormat="##.#%"}(${femaleNum})
+					</p>
+				</div>
+				<div id="other" class="news-blocks">
+					<h3>其他数据  <i id="entData" class="icon-plus"></i></h3>
+				</div>
+			</div>
+		</div>
+	</div>
+	<%}%>
+</div>
+<div class="footer">
+	<div class="footer-tools">
+		<span class="go-top"> <i class="icon-angle-up"></i>
+		</span>
+	</div>
+</div>
+<script>
+$(function() {
+	App.init();
+	Index.initDaterange();
+	// 路径配置
+    require.config({
+        paths: {
+            	echarts:'${base}/js/echarts-2.1.10/build/dist',
+            }
+        });
+    // 使用
+    require(
+        [
+     	'echarts',
+    	'echarts/chart/line',
+    	'echarts/chart/bar',
+        ],
+        function (ec) {
+            // 基于准备好的dom，初始化echarts图表
+            var myChart = ec.init(document.getElementById('todayMain')); 
+            var dataList =  JSON.parse('${totalTodayDataList}');
+    		var dataTitle = new Array();
+    		var seriesData = new Array();
+    		for (var index = 0; index < dataList.length; index++) {
+    			dataTitle.push(dataList[index].name);
+    			seriesData.push({name:dataList[index].name,data:dataList[index].data,type:'line',markPoint : {data : [{type : 'max', name: '最大值'},{type : 'min', name: '最小值'}]},markLine : {data : [{type : 'average', name : '平均值'}]}});
+    		}
+            option = {
+            	    title : {
+            	        text: '今日数据',
+            	        subtext: '截止到当前时间'
+            	    },
+            	    legend: {
+            	        data:dataTitle
+            	    },
+            	    tooltip : {
+            	        trigger: 'axis'
+            	    },
+            	    toolbox: {
+            	        show : true,
+            	        orient: 'vertical',
+            	        feature : {
+            	            mark : {show: true},
+            	            dataView : {show: true, readOnly: false},
+            	            magicType : {show: true, type: ['line', 'bar']},
+            	            restore : {show: true},
+            	            saveAsImage : {show: true}
+            	        }
+            	    },
+            	    calculable : true,
+            	    xAxis : [
+            	        {
+            	            type : 'category',
+            	            boundaryGap : false,
+            	            data : function (){
+            	                var list = [];
+            	                for (var i = 0;i< 24; i++) {
+            	                    list.push(i);
+            	                }
+            	                return list;
+            	            }()
+            	        }
+            	    ],
+            	    yAxis : [
+            	        {
+            	            type : 'value',
+            	            axisLabel : {
+            	                formatter: '{value} 条'
+            	            }
+            	        }
+            	    ],
+            	    series :seriesData
+            	};
+            	                    
+            // 为echarts对象加载数据 
+            myChart.setOption(option); 
+            window.onresize=function(){
+            	myChart.resize();
+            };
+        }
+    );
+});
+	$('#entData').click(function(){
+		if($(this).parent('h3').parent('div').find('input').length <= 0) {
+			$(this).parent('h3').parent('div').append(
+					'<input id="tit" class="m-wrap small" type="text">'
+					+'<input id="cont" class="m-wrap small" type="text">'
+					+'<button class="btn red" onclick="addData()" type="button">确定</button>');
+		} else {
+			Messenger().post("请先处理完之前的数据.");
+		}
+	});
+	function addData(){
+		var title = $('#tit').val();
+		var cont = $('#cont').val();
+		$('#other').append(
+				'<p><i class="icon-windows">' + title + '</i>'+cont+'</p>');
+		$('#other').find('input').remove();
+		$('#other').find('button').remove();
+	}
+</script>
+<%}%>

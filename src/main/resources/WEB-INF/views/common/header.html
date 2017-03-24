@@ -1,0 +1,223 @@
+<div class="header navbar navbar-inverse navbar-fixed-top">
+	<div class="navbar-inner">
+		<div class="container-fluid">
+			<a class="brand" href="${base}">
+				<img src="${base}/css/image/cailogo.png" alt="logo" />
+			</a>
+			<a href="javascript:;" class="btn-navbar collapsed" data-toggle="collapse" data-target=".nav-collapse">
+				<img src="${base}/images/menu-toggler.png" alt="" />
+			</a>
+			<ul class="nav pull-right">
+				<li class="dropdown" id="header_notification_bar"><a href="#"
+					class="dropdown-toggle" data-toggle="dropdown" id="notification_a">
+						<i class="icon-envelope"></i>
+				</a>
+					<ul class="dropdown-menu extended notification">
+						<li>
+							<p id="commentNum"></p>
+						</li>
+						<li id="notification_li"></li>
+						<li class="external"><a href="#">查看所有消息<i
+								class="m-icon-swapright"></i></a></li>
+					</ul></li>
+				<li class="dropdown" id="header_chat_bar"><a href="#"
+					class="dropdown-toggle" data-toggle="dropdown" id="chat_a"> <i
+						class="icon-comments"></i>
+				</a>
+					<ul class="dropdown-menu extended inbox">
+						<li>
+							<p id="chatNum"></p>
+						</li>
+						<li id="chat_li"></li>
+					</ul></li>
+				<li class="dropdown user">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+						<span class="username">${session.user.name}</span>
+						<span>[${session.userGroup.gname}]</span>
+						<i class="icon-angle-down"></i>
+					</a>
+					<ul class="dropdown-menu">
+						<li><a href="${base}/system/editPasswordUI"><i
+								class="icon-key"> 修改密码</i></a></li>
+						<li><a href="${base}/system/logout"><i class="icon-off"></i>
+								退出</a></li>
+						<li><a href="#"><i class="icon-envelope"></i> 消息中心</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+	$(function() {
+		$('#header_notification_bar')
+				.click(
+						function() {
+							$
+									.ajax({
+										type : 'post',
+										url : '${base}/notification/findSysUserNotification',
+										dataType : 'json',
+										beforeSend : function() {
+											$("#notification_li").empty();
+										},
+										success : function(map) {
+											var msgList = "";
+											var url = "";
+											if (map.data.length < 1
+													|| map.data == null) {
+												$("#commentNum").html("暂无新消息");
+											} else {
+												var i = 0;
+												$(map.data)
+														.each(
+																function() {
+																	$(
+																			"#notification_a")
+																			.eq(
+																					0)
+																			.append(
+																					'<span class="badge">'
+																							+ map.data.length
+																							+ '</span>');
+																	$(
+																			"#commentNum")
+																			.html(
+																					"你有"
+																							+ map.data.length
+																							+ "条未读消息");
+																	if (this.ntype == 1) {
+																		url = "${base}/members/findAllMemberGuess/guessDetailUI?questionid="
+																				+ this.from_id
+																				+ '&nid='
+																				+ this.id;
+																		msgList = '<a href="'+url+'"> <span class="label label-success"><i class="icon-pencil"></i></span>';
+																	} else if (this.ntype == 2) {
+																		url = "${base}/members/findAllMemberGuess/guessDetailUI?questionid="
+																				+ this.from_id
+																				+ '&nid='
+																				+ this.id;
+																		msgList = '<a href="'+url+'"> <span class="label label-warning"><i class="icon-edit"></i></span>';
+																	} else if (this.ntype == 3) {
+																		url = "${base}/members/findAllMemberGuess/guessDetailUI?questionid="
+																				+ this.from_id
+																				+ '&nid='
+																				+ this.id;
+																		msgList = '<a href="'+url+'"> <span class="label label-important"><i class="icon-comments-alt"></i></span>';
+																	} else if (this.ntype == 4) {
+																		url = "${base}/members/findAllMemberGuess/guessDetailUI?questionid="
+																				+ this.from_id
+																				+ '&nid='
+																				+ this.id;
+																		msgList = '<a href="'+url+'"> <span class="label label-info"><i class="icon-heart-empty"></i></span>';
+																	} else {
+																		msgList = '<a href="javascript:void(0)" class="changeNotification" data-id="'
+																				+ this.id
+																				+ '"><span class="label label-info">';
+																		if (this.ntype == 7) {
+																			msgList += '<i class="icon-user"></i></span>';
+																		} else if (this.ntype == 8) {
+																			msgList += '<i class="icon-user-md"></i></span>';
+																		} else if (this.ntype == 9) {
+																			msgList += '<i class="icon-bullhorn"></i></span>';
+																		}
+																	}
+
+																	msgList += this.title
+																			+ '<span class="time">'
+																			+ this.newtime
+																			+ '</span><i class="icon-off" style="float:right"></i><br/><span class="message">'
+																			+ this.note
+																			+ '</span></a>';
+																	$(
+																			"#notification_li")
+																			.append(
+																					msgList);
+																	i++;
+																	if (i >= 5) {
+																		return false;
+																	}
+																});
+											}
+										},
+										error : function() {
+										}
+									});
+						});
+
+		$('#header_chat_bar')
+				.click(
+						function() {
+							$
+									.ajax({
+										type : 'post',
+										url : '${base}/notification/getOfMsg',
+										dataType : 'json',
+										beforeSend : function() {
+											$("#chat_li").empty();
+										},
+										success : function(map) {
+											var msgList = "";
+											if (map.data.length < 1
+													|| map.data == null) {
+												$("#chatNum").html("暂无新消息");
+											} else {
+												var msg = map.data;
+												$("#chatNum").html(
+														"你有" + msg.length
+																+ "条未读消息");
+												var htmlUrl = "${base}/official/findAllOfficialChat";
+												for (var i = 0; i < msg.length; i++) {
+													$("#chat_a")
+															.eq(0)
+															.append(
+																	'<span class="badge">'
+																			+ msg.length
+																			+ '</span>');
+													msgList = '<a href="'+htmlUrl+'"> <span class="photo"><img src="'+msg[i].furl+'" alt="" /></span> <span class="subject"> <span class="from">'
+															+ msg[i].fnick
+															+ '</span> <span class="time">'
+															+ ((new Date(
+																	(msg[i].date) * 1000))
+																	.toLocaleString())
+																	.slice(5,
+																			17)
+															+ '</span> </span> <span class="message">'
+															+ msg[i].stanza
+															+ '</span> </a>';
+													$("#chat_li").append(
+															msgList);
+												}
+
+											}
+										},
+										error : function() {
+										}
+									});
+						});
+	});
+
+	$('.changeNotification').live(
+			'click',
+			function() {
+				$.ajax({
+					type : 'get',
+					url : "${base}/notification/changeNotification?id="
+							+ $(this).data('id'),
+					dataType : 'json',
+					data : {
+						id : $(this).data('id')
+					},
+					success : function() {
+						location.reload();
+					},
+					error : function() {
+						Messenger().post({
+							message : "服务器出错,请联系技术人员进行处理.",
+							type : 'error',
+							showCloseButton : true
+						});
+					}
+				});
+			});
+</script>

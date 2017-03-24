@@ -1,0 +1,29 @@
+<%layout("/views/common/layout.html"){%>
+<link href="${base}/css/metro/error.css" rel="stylesheet">
+<div class="container-fluid">
+	<div class="row-fluid">
+		<div class="span12 page-404">
+			<div class="number">404</div>
+			<div class="details">
+				<h3>Sorry 页面未找到</h3>
+				<p>
+					当前后台暂无此功能或页面.<br />
+					<a href="${base}">返回首页</a>,或者可以对全局进行搜索.
+				</p>
+				<form action="#">
+					<div class="input-append">
+						<input class="m-wrap" size="16" type="text"
+							placeholder="keyword..." />
+						<button class="btn blue">Search</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+$(function() {
+	App.init();
+});
+</script>
+<%}%>
